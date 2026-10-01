@@ -24,3 +24,10 @@ jobs:
 
       - name: Test
         run: echo "code is tested!"
+
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-build
+          path: dist/
