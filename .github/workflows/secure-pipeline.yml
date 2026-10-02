@@ -12,9 +12,29 @@ jobs:
     name: BUILD-JOB
     runs-on: ubuntu-slim
 
+    permissions:
+      contents: read
+      security-events: write
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+
+      # 3. Automatically build the project
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+
+      # 4. Execute CodeQL analysis
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
 
       - name: Set up Node.js 24
         uses: actions/setup-node@v4
